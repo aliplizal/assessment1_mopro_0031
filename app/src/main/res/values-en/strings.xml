@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Loan Calculator</string>
+    <string name="loan_intro">Quickly and easily calculate your monthly loan installment!</string>
+    <string name="loan_amount">Loan Amount</string>
+    <string name="interest_rate">Interest Rate</string>
+    <string name="duration_label">Select Loan Duration</string>
+    <string name="calculate">Calculate</string>
+    <string name="monthly_payment">Monthly Installment: %1$s</string>
+    <string name="invalid_input">Input must not be empty or zero.</string>
+    <string name="about_app">About App</string>
+    <string name="loan_app_description">Loan Calculator is an Android app designed to help you calculate monthly installments based on the loan amount, annual interest rate, and loan duration in months or years.
+
+\n\nHow this app works is simple:
+\n1. Just enter the desired loan amount.
+\n2. Then, enter the annual interest rate (in percent).
+\n3. Select the loan duration in years.
+\n4. Press the "Calculate" button to see the monthly installment result.
+
+\n\nThis app uses the fixed installment (annuity) method, commonly used by banks and financial institutions. The calculation formula is as follows:
+
+\n\nMonthly Installment = [P × r] / [1 - (1 + r)^-n]
+
+\n\nWhere:
+\n- P is the loan amount
+\n- r is the monthly interest rate (annual interest ÷ 12 ÷ 100)
+\n- n is the number of months
+
+\n\nWith this formula, the monthly installment remains constant throughout the loan term. You can share the calculation results with others via the share feature.
+
+\n\n\nCopyright © 2024–2025 Alip Lizal.\nAll rights reserved</string>
+    <string name="back">Back</string>
+    <string name="share">Share</string>
+    <string name="share_template">Loan Amount: %1$s \\nInterest Rate: %2$s%% \\nDuration: %3$s \\nMonthly Installment: %4$s</string>
+</resources>

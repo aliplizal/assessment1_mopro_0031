@@ -1,3 +1,35 @@
 <resources>
-    <string name="app_name">Assessment 1</string>
+    <string name="app_name">Kalkulator Pinjaman</string>
+    <string name="loan_intro">Hitung cicilan bulanan pinjamanmu dengan cepat dan mudah!</string>
+    <string name="loan_amount">Jumlah Pinjaman</string>
+    <string name="interest_rate">Suku Bunga</string>
+    <string name="duration_label">Pilih Durasi Pinjaman</string>
+    <string name="calculate">Hitung</string>
+    <string name="monthly_payment">Cicilan Bulanan: %1$s</string>
+    <string name="invalid_input">Input tidak boleh kosong atau nol.</string>
+    <string name="about_app">Tentang Aplikasi</string>
+    <string name="loan_app_description">Kalkulator Pinjaman adalah aplikasi Android yang dirancang untuk membantu Anda menghitung cicilan bulanan berdasarkan jumlah pinjaman, suku bunga tahunan, dan durasi pinjaman dalam bulan atau tahun. Aplikasi ini berguna sebagai alat estimasi keuangan pribadi sebelum Anda mengambil pinjaman dari bank atau lembaga keuangan lainnya.
+
+\n\nCara kerja aplikasi ini sederhana:
+\n1. Anda cukup memasukkan jumlah pinjaman yang diinginkan.
+\n2. Lalu, masukkan suku bunga tahunan (dalam persen).
+\n3. Pilih durasi pinjaman dalam satuan waktu tahun.
+\n4. Tekan tombol "Hitung" untuk melihat hasil perhitungan cicilan per bulan.
+
+\n\nAplikasi ini menggunakan metode perhitungan cicilan tetap (annuitas), yang umum digunakan oleh bank dan lembaga keuangan. Rumus perhitungannya sebagai berikut:
+
+\n\nCicilan Bulanan = [P × r] / [1 - (1 + r)^-n]
+
+\n\nDi mana:
+\n- P adalah jumlah pinjaman
+\n- r adalah bunga per bulan (suku bunga tahunan ÷ 12 ÷ 100)
+\n- n adalah jumlah bulan
+
+\n\nDengan rumus ini, hasil cicilan per bulan akan konstan selama masa pinjaman. Anda bisa membagikan hasil perhitungan ke orang lain melalui fitur berbagi.
+
+\n\n\nCopyright © 2024–2025 Alip Lizal.\nAll rights reserved
+</string>
+    <string name="back">Kembali</string>
+    <string name="share">Bagikan</string>
+    <string name="share_template">Jumlah Pinjaman: %1$s \nSuku Bunga: %2$s%% \nDurasi: %3$s \nCicilan Bulanan: %4$s</string>
 </resources>

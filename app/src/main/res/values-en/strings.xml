@@ -4,6 +4,7 @@
     <string name="loan_intro">Quickly and easily calculate your monthly loan installment!</string>
     <string name="loan_amount">Loan Amount</string>
     <string name="interest_rate">Interest Rate</string>
+    <string name="duration_10_year">3 Years</string>
     <string name="duration_label">Select Loan Duration</string>
     <string name="calculate">Calculate</string>
     <string name="monthly_payment">Monthly Installment: %1$s</string>
@@ -32,4 +33,6 @@
     <string name="back">Back</string>
     <string name="share">Share</string>
     <string name="share_template">Loan Amount: %1$s \\nInterest Rate: %2$s%% \\nDuration: %3$s \\nMonthly Installment: %4$s</string>
+    <string name="duration_1_year">1 Years</string>
+    <string name="duration_5_year">2 Years</string>
 </resources>

@@ -1,6 +1,6 @@
 package com.aliplizal607062300031.assessment1.navigation
 
-import AboutScreen
+import com.aliplizal607062300031.assessment1.ui.screen.AboutScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost

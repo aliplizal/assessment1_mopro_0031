@@ -1,3 +1,5 @@
+package com.aliplizal607062300031.assessment1.ui.screen
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll

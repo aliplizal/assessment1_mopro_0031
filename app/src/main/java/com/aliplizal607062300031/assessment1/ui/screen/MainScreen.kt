@@ -1,26 +1,48 @@
 package com.aliplizal607062300031.assessment1.ui.screen
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -31,9 +53,9 @@ import androidx.navigation.compose.rememberNavController
 import com.aliplizal607062300031.assessment1.R
 import com.aliplizal607062300031.assessment1.navigation.Screen
 import com.aliplizal607062300031.assessment1.ui.theme.Assessment1Theme
-import kotlin.math.pow
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
+import kotlin.math.pow
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,10 +68,15 @@ fun MainScreen(navController: NavHostController) {
     var interestRate by rememberSaveable { mutableStateOf("") }
     var interestRateError by rememberSaveable { mutableStateOf(false) }
 
-    val durations = listOf("1 Tahun", "5 Tahun", "10 Tahun")
+    val durations = listOf(
+        stringResource(id = R.string.duration_1_year),
+        stringResource(id = R.string.duration_5_year),
+        stringResource(id = R.string.duration_10_year)
+    )
+
     var selectedDuration by rememberSaveable { mutableStateOf(durations[0]) }
 
-    var monthlyPayment by rememberSaveable { mutableStateOf(0.0) }
+    var monthlyPayment by rememberSaveable { mutableDoubleStateOf(0.0) }
     var resultText by rememberSaveable { mutableStateOf("") }
 
     val context = LocalContext.current
@@ -130,28 +157,40 @@ fun MainScreen(navController: NavHostController) {
                 modifier = Modifier.fillMaxWidth()
             )
 
-            Text(text = stringResource(R.string.duration_label))
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp, horizontal = 16.dp),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
+            var expanded by remember { mutableStateOf(false) }
+
+            ExposedDropdownMenuBox(
+                expanded = expanded,
+                onExpandedChange = { expanded = !expanded }
             ) {
-                durations.forEach { duration ->
-                    LoanDurationOption(
-                        label = duration,
-                        isSelected = selectedDuration == duration,
-                        modifier = Modifier
-                            .selectable(
-                                selected = selectedDuration == duration,
-                                onClick = { selectedDuration = duration },
-                                role = Role.RadioButton
-                            )
-                            .padding(8.dp)
-                    )
+                OutlinedTextField(
+                    readOnly = true,
+                    value = selectedDuration,
+                    onValueChange = {},
+                    label = { Text(text = stringResource(R.string.duration_label)) },
+                    trailingIcon = {
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                    },
+                    modifier = Modifier
+                        .menuAnchor()
+                        .fillMaxWidth()
+                )
+                ExposedDropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false }
+                ) {
+                    durations.forEach { duration ->
+                        DropdownMenuItem(
+                            text = { Text(text = duration) },
+                            onClick = {
+                                selectedDuration = duration
+                                expanded = false
+                            }
+                        )
+                    }
                 }
             }
+
 
             Button(
                 onClick = {
@@ -184,7 +223,7 @@ fun MainScreen(navController: NavHostController) {
             }
 
             if (monthlyPayment != 0.0) {
-                Divider(modifier = Modifier.padding(vertical = 8.dp), thickness = 1.dp)
+                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp), thickness = 1.dp)
                 Text(
                     text = resultText,
                     style = MaterialTheme.typography.titleLarge
@@ -229,21 +268,6 @@ fun formatRupiah(input: String): String {
 }
 
 @Composable
-fun LoanDurationOption(label: String, isSelected: Boolean, modifier: Modifier) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        RadioButton(selected = isSelected, onClick = null)
-        Text(
-            text = label,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(top = 4.dp)
-        )
-    }
-}
-
-@Composable
 fun IconPicker(isError: Boolean, unit: String) {
     if (isError) {
         Icon(imageVector = Icons.Filled.Warning, contentDescription = null)
@@ -259,6 +283,7 @@ fun ErrorHint(isError: Boolean) {
     }
 }
 
+@SuppressLint("QueryPermissionsNeeded")
 private fun shareData(context: Context, message: String) {
     val shareIntent = Intent(Intent.ACTION_SEND).apply {
         type = "text/plain"

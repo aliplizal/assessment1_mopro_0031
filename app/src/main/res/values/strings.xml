@@ -3,6 +3,9 @@
     <string name="loan_intro">Hitung cicilan bulanan pinjamanmu dengan cepat dan mudah!</string>
     <string name="loan_amount">Jumlah Pinjaman</string>
     <string name="interest_rate">Suku Bunga</string>
+    <string name="duration_1_year">1 Tahun</string>
+    <string name="duration_5_year">5 Tahun</string>
+    <string name="duration_10_year">10 Tahun</string>
     <string name="duration_label">Pilih Durasi Pinjaman</string>
     <string name="calculate">Hitung</string>
     <string name="monthly_payment">Cicilan Bulanan: %1$s</string>
